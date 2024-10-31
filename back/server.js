@@ -1,51 +1,41 @@
+require("dotenv").config(); // Load environment variables from the .env file
+const http = require("http"); // Import the http module to create the server
+const app = require("./app"); // Import the Express application
+// SQL Database connection
+const db = require("./models"); // Import the Sequelize models (and the database connection)
 
-const dotenv = require('dotenv');
-dotenv.config();
+// Define the port using environment variables, with a fallback option
+const PORT = process.env.PORT || 3000;
 
-const http = require('http');
-const app = require('./app');
+app.set("port", PORT); // Set the port for the Express app
+const server = http.createServer(app); // Create the server using the Express app
 
-const normalizePort = val => {
-  const port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    return val;
-  }
-  if (port >= 0) {
-    return port;
-  }
-  return false;
-};
-const port = normalizePort(process.env.PORT ||'3000');
-app.set('port', port);
-
-const errorHandler = error => {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
-  const address = server.address();
-  const bind = typeof address === 'string' ? 'pipe ' + address : 'port: ' + port;
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges.');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use.');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-};
-
-const server = http.createServer(app);
-
-server.on('error', errorHandler);
-server.on('listening', () => {
-  const address = server.address();
-  const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
-  console.log('Listening on ' + bind);
+// Server error handling
+server.on("error", (err) => {
+  console.log(`Server Error | ${err}`); // Log any server errors
 });
 
-server.listen(port);
+// Start the server and handle database connection
+server.listen(PORT, () => {
+  console.log(`Server running on port: ${PORT}`); // Log that the server is running
+  console.log("Checking database connection..."); // Inform that the database connection is being checked
+
+  // Test the database connection using Sequelize's authenticate method
+  db.sequelize
+    .authenticate()
+    .then(() => {
+      // Synchronize the models with the database without altering or forcing changes
+      db.sequelize.sync({ alter: false, force: false });
+      console.log("Database connection OK!"); // Log success
+      console.log("-----------------------");
+    })
+    .catch((error) => {
+      // Log if there is a failure in connecting to the database
+      console.log("Unable to connect to the database:");
+      console.log(error.message); // Log the specific error message
+      console.log("-----------------------");
+      process.exit(1); // Exit the process if unable to connect to the database
+    });
+});
+
+
