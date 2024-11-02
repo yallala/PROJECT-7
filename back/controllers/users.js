@@ -81,7 +81,7 @@ exports.userLogin = (req, res) => {
 };
 
 // User registration.
-exports.userSign = (req, res) => {
+exports.userSignup = (req, res) => {
   // Check if email and password are provided in the request body
   if (!req.body.email || !req.body.password)
     return res.status(400).json({ error: "Empty input!" });

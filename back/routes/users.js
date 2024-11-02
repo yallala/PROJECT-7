@@ -13,7 +13,7 @@ router.post("/login", ctrlUser.userLogin);
 // Handles user login. No authentication needed since it's a login route
 
 // Route for user registration (sign-up)
-router.post("/sign", multer.single("avatar"), ctrlUser.userSign);
+router.post("/signup", multer.single("avatar"), ctrlUser.userSignup);
 // Allows new users to sign up and optionally upload an avatar
 
 // Route to retrieve a user's information

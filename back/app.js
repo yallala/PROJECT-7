@@ -29,15 +29,15 @@ app.use(express.json());
 
 // Use the imported routes and define their base paths
 app.use("/api/auth", userRoutes); // Authentication routes (login, signup)
-app.use("/api/user", userRoutes); // User-related routes
+// app.use("/api/user", userRoutes); // User-related routes
 app.use("/api/articles", articlesRoutes); // Article-related routes
-app.use("/api/comments", commentsRoutes); // Comment-related routes
-app.use("/api/jobs", jobsRoutes); // Job-related routes
-app.use("/api/likes", likesRoutes); // Like-related routes
+// app.use("/api/comments", commentsRoutes); // Comment-related routes
+// app.use("/api/jobs", jobsRoutes); // Job-related routes
+// app.use("/api/likes", likesRoutes); // Like-related routes
 
 // Serve static files for images and avatars
 app.use("/images", express.static(path.join(__dirname, "images"))); // Serve images
-app.use("/avatars", express.static(path.join(__dirname, "avatars"))); // Serve avatars
+// app.use("/avatars", express.static(path.join(__dirname, "avatars"))); // Serve avatars
 
 module.exports = app; // Export the Express app
 
