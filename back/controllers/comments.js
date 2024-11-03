@@ -36,9 +36,8 @@ exports.commentAdd = (req, res) => {
 
   // If a file is uploaded, construct the image URL
   if (req.file)
-    myImage = `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`;
+    myImage = `${req.protocol}://${req.get("host")}/images/${req.file.filename
+      }`;
 
   // Find the user who is the author of the comment
   Users.findOne({ where: { id: authorId } })
@@ -61,23 +60,22 @@ exports.commentAdd = (req, res) => {
 // Editing a comment.
 exports.commentEdit = (req, res) => {
   // Get the ID of the comment to be edited
-  const commentId = req.params.id;
+  const articleId = req.params.id;
   let myComment = req.body.comment; // Get the updated comment content
   let myImage = "none"; // Default value for the image
 
   // If a new image file is uploaded, construct the new image URL
   if (req.file && req.file.filename)
-    myImage = `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`;
+    myImage = `${req.protocol}://${req.get("host")}/images/${req.file.filename
+      }`;
 
   // Find the comment by its ID
-  Comments.findOne({ where: { id: commentId } })
+  Comments.findOne({ where: { id: articleId } })
     .then((comment) => {
       // If there was a previous image and a new image is uploaded, delete the old image
       if (myImage != "none" && comment.image != "none") {
         const filename = comment.image.split("/images/")[1];
-        fs.unlink(`images/${filename}`, () => {}); // Delete the old image file
+        fs.unlink(`images/${filename}`, () => { }); // Delete the old image file
       }
 
       // Update the comment content and/or image
@@ -95,19 +93,19 @@ exports.commentEdit = (req, res) => {
 // Deleting a comment.
 exports.commentDel = (req, res) => {
   // Get the ID of the comment to be deleted
-  const commentId = req.params.id;
+  const articleId = req.params.id;
 
   // Find the comment by its ID
-  Comments.findOne({ where: { id: commentId } })
+  Comments.findOne({ where: { id: articleId } })
     .then((comment) => {
       // If the comment has an image, delete the image file
       if (comment.image != "none") {
         const filename = comment.image.split("/images/")[1];
-        fs.unlink(`images/${filename}`, () => {}); // Delete the image
+        fs.unlink(`images/${filename}`, () => { }); // Delete the image
       }
 
       // Delete the comment from the database
-      Comments.destroy({ where: { id: commentId } })
+      Comments.destroy({ where: { id: articleId } })
         .then(() => res.status(200).json({ message: "Comment deleted!" })) // Return success response
         .catch((error) => res.status(400).json({ error })); // Handle errors during deletion
     })

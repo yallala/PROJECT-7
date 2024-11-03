@@ -1,4 +1,5 @@
 const fs = require("fs"); // File system module for working with file operations
+// const bCrypt = require("bcrypt"); // bcrypt module for password hashing
 const bCrypt = require("bcryptjs"); // bcrypt module for password hashing
 const jwt = require("jsonwebtoken"); // JSON Web Token for user authentication
 const db = require("../models"); // Importing the database models
@@ -81,7 +82,7 @@ exports.userLogin = (req, res) => {
 };
 
 // User registration.
-exports.userSignup = (req, res) => {
+exports.userSign = (req, res) => {
   // Check if email and password are provided in the request body
   if (!req.body.email || !req.body.password)
     return res.status(400).json({ error: "Empty input!" });
