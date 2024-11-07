@@ -92,7 +92,7 @@ exports.userSign = (req, res) => {
     .hash(req.body.password, 10)
     .then((hash) => {
       console.log("New registration.");
-      let objectJobs = { jobs: "Membre" }; // Default job for new users
+      let objectJobs = { jobs: "Member" }; // Default job for new users
       let objectUser = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
