@@ -149,3 +149,10 @@ exports.articleDel = (req, res) => {
       res.status(500).json({ message: error }); // Handle errors during article lookup
     });
 };
+
+
+//TODO Code user read request handler
+//Find the post
+//See if post is already read by the user
+//If not read mark the post as read by the user
+//UI 
