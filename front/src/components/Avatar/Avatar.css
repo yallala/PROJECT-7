@@ -13,7 +13,6 @@
   font-size: 1.9em;
   border: 2px solid;
 }
-
 .avatar img {
   max-width: none;
   position: relative;
@@ -24,7 +23,6 @@
 
   object-fit: cover;
 }
-
 .avatar.clickable {
   cursor: pointer;
 }
@@ -40,7 +38,6 @@
   border-radius: 10em;
   background-color: var(--color-accent-light);
 }
-
 .avatar-profile .fa-user {
   font-size: 5em;
   color: var(--color-accent);
@@ -65,7 +62,7 @@
   color: var(--color-secondary);
   background-color: var(--color-shadow);
   border-radius: 2em;
-  border: 2px solid var(--options);
+  border: 2px solid var(--color-options-comment);
   cursor: pointer;
 }
 
@@ -79,11 +76,10 @@
 }
 
 .avatar-profile .avatar-options label:hover {
-  background-color: var(--options);
+  background-color: var(--color-options-comment);
 }
 
 .avatar-profile .avatar-options div.delete:hover {
   background-color: var(--color-primary);
 }
-
 /******************************/

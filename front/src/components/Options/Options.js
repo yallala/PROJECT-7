@@ -12,6 +12,7 @@ export default class Options extends React.Component {
       // DATAS
       userLogged: props.userLogged,
       optionsFor: props.for,
+      commentId: props.commentId,
       // OPTIONS
       isLoading: false, // Active for all get request
     };
@@ -26,7 +27,7 @@ export default class Options extends React.Component {
   }
 
   setOptions() {
-    const { optionsFor, articleId, userLogged } = this.state;
+    const { optionsFor, commentId, userLogged } = this.state;
     switch (optionsFor) {
       case "Avatar":
         return (
@@ -37,7 +38,7 @@ export default class Options extends React.Component {
                 id={"Profile"}
                 onClick={this.props.navigateTo}
               >
-                <i className="fa-solid fa-user"></i> Modify
+                <i className="fa-solid fa-user"></i> Profile
               </li>
               {userLogged.isAdmin ? (
                 <>
@@ -57,6 +58,8 @@ export default class Options extends React.Component {
             </ul>
           </>
         );
+
+      // Comment Edit and Delete
       default:
         return (
           <>
@@ -66,17 +69,17 @@ export default class Options extends React.Component {
               </li>
               <li
                 className="delete"
-                value={articleId}
+                value={commentId}
                 onClick={this.props.onDeleteClick}
               >
                 <i className="fa-solid fa-trash"></i> Delete
               </li>
 
-              {/* {articleId ? (
+              {/* {commentId ? (
                 <>
                   <li
                     className="delete"
-                    value={articleId}
+                    value={commentId}
                     onClick={this.props.onDeleteClick}
                   >
                     <i className="fa-solid fa-trash"></i> Delete

@@ -17,7 +17,7 @@ article form>label {
 }
 
 article .file-upload {
-  /* position: absolute; */
+  position: absolute;
   bottom: 5px;
   left: 5px;
   width: 40px;
@@ -26,12 +26,12 @@ article .file-upload {
   font-size: 1.1em;
   border: 2px solid;
   background-color: var(--color-shadow);
-  border: 2px solid var(--options);
+  border: 2px solid var(--color-options-comment);
   border-radius: 2em;
 }
 
 article .file-upload:hover {
-  color: var(--options);
+  color: var(--color-options-comment);
   background-color: var(--color-secondary);
 }
 
@@ -81,6 +81,30 @@ article .infos-total {
   justify-content: center;
 }
 
+article p.comment {
+  display: block;
+  min-width: 50%;
+  width: 100%;
+  margin: 4px;
+  padding: 6px;
+  font-size: 0.8em;
+  text-align: right;
+  color: var(--color-options-comment);
+  border: 0;
+}
+
+article p.like {
+  display: block;
+  min-width: 50%;
+  width: 100%;
+  margin: 4px;
+  padding: 6px;
+  font-size: 0.8em;
+  text-align: left;
+  color: var(--color-primary);
+  border: 0;
+  background-color: var(--color-error-light);
+}
 
 .article-author {
   display: flex;
@@ -135,11 +159,11 @@ article .infos-total {
   color: var(--color-secondary);
   border: 1px solid;
   border-radius: 0.2em;
-  background-color: var(--options);
+  background-color: var(--color-options-comment);
 }
 
 .article-no-options button:hover {
-  color: var(--options);
+  color: var(--color-options-comment);
   background-color: var(--color-secondary);
 }
 
@@ -147,6 +171,7 @@ article .infos-total {
 
 form.addArticle {
   display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 10px;
   background-color: #ffffff;
@@ -165,13 +190,13 @@ form.addArticle label.file-upload {
   width: 40px;
   height: 40px;
   font-size: 1.1em;
-  background-color: var(--options);
+  background-color: var(--color-options-comment);
   border-radius: 0;
   border: 1px solid;
 }
 
 form.addArticle label.file-upload:hover {
-  color: var(--options);
+  color: var(--color-options-comment);
   background-color: var(--color-secondary);
 }
 
@@ -187,11 +212,30 @@ form.addArticle button {
   height: 40px;
   font-size: 1.1em;
   color: var(--color-valid-accent);
-  background-color: var(--color-valid-accent-2);
+  /* background-color: var(--color-valid-accent-2); */
+  background-color: green;
 }
 
 form.addArticle button:disabled {
   background-color: var(--color-accent-light);
   color: var(--color-accent);
   cursor: no-drop;
+}
+
+.submit-post-btn-text {
+  color: white;
+  cursor: pointer;
+}
+
+.submit-post-btn {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 10px !important;
+}
+
+
+.submit-post-btn:hover {
+  background-color: black !important;
+  cursor: pointer;
 }

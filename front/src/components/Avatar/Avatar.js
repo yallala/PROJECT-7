@@ -47,14 +47,14 @@ const Avatar = ({
         <div className="avatar-profile">
           {setAvatar()}
           <div className="avatar-options">
-            <label htmlFor="avatar">
+            {/* <label htmlFor="avatar">
               <span className="hidden">avatar</span>
               {fileAvatar ? (
                 <i className="fa-solid fa-xmark"></i>
               ) : (
                 <i className="fa-solid fa-upload"></i>
               )}
-            </label>
+            </label> */}
             <input
               id="avatar"
               name="avatar"

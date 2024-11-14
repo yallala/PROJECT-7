@@ -1,6 +1,5 @@
 const fs = require("fs"); // File system module for working with file operations
-// const bCrypt = require("bcrypt"); // bcrypt module for password hashing
-const bCrypt = require("bcryptjs"); // bcrypt module for password hashing
+const bCrypt = require("bcrypt"); // bcrypt module for password hashing
 const jwt = require("jsonwebtoken"); // JSON Web Token for user authentication
 const db = require("../models"); // Importing the database models
 const { Op } = require("sequelize"); // Sequelize operators for complex queries
@@ -92,7 +91,7 @@ exports.userSign = (req, res) => {
     .hash(req.body.password, 10)
     .then((hash) => {
       console.log("New registration.");
-      let objectJobs = { jobs: "Member" }; // Default job for new users
+      let objectJobs = { jobs: "Membre" }; // Default job for new users
       let objectUser = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
@@ -150,8 +149,9 @@ exports.userEdit = (req, res) => {
         });
         objectUser = {
           ...objectUser,
-          avatar: `${req.protocol}://${req.get("host")}/avatars/${req.file.filename
-            }`, // Set new avatar URL
+          avatar: `${req.protocol}://${req.get("host")}/avatars/${
+            req.file.filename
+          }`, // Set new avatar URL
         };
       }
 

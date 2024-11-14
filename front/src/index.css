@@ -12,7 +12,8 @@
 
 :root {
     /* Default Color */
-    --color-primary: #B30000;
+    /* --color-primary: #B30000; */
+    --color-primary: #1D4E89;
     --color-secondary: #FFFFFF;
     --color-accent-light: #EFEFEF;
     --color-accent: #999999;
@@ -28,10 +29,8 @@
         /*#F5C2C2*/
     ;
     /* Options Color */
-    --options: #0053B3;
-    --options-light: #EDF1FF;
-    /* --options: #0053B3;
-    --options-light: #EDF1FF; */
+    --color-options-comment: #0053B3;
+    --color-options-comment-light: #EDF1FF;
 }
 
 #root {
@@ -59,6 +58,11 @@ main {
 main,
 article,
 img {
+    width: 100%;
+}
+
+video,
+audio {
     width: 100%;
 }
 
@@ -188,9 +192,9 @@ input.valid {
     background-color: var(--color-valid-accent);
 }
 
-input[type='file'] {
+/* input[type='file'] {
     display: none;
-}
+} */
 
 input[type='text'],
 input[type='password'],

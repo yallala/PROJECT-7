@@ -12,7 +12,7 @@ const Register = ({ navigateTo }) => {
   const [validForm, setValidForm] = useState(true);
   const [inAction, setInAction] = useState(false);
   const [error, setError] = useState("");
-  const signUrl = "http://localhost:3000/api/auth/signup";
+  const signUrl = "http://localhost:3000/api/auth/sign";
 
   const postRegister = async (event) => {
     event.preventDefault();
