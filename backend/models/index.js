@@ -17,6 +17,10 @@ const sequelize = new Sequelize(
   }
 );
 
+// if (env === "development") {
+  sequelize.sync({ alter: true })
+// }
+
 // Initialize an empty object to hold models and Sequelize instance
 const db = {};
 db.Sequelize = Sequelize; // Sequelize library
