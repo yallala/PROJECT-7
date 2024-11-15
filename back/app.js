@@ -5,7 +5,6 @@ const path = require("path"); // Path module to handle file paths
 // Import routes for different resources
 const userRoutes = require("./routes/users");
 const articlesRoutes = require("./routes/articles");
-const commentsRoutes = require("./routes/comments");
 const jobsRoutes = require("./routes/jobs");
 const likesRoutes = require("./routes/likes");
 
@@ -31,7 +30,6 @@ app.use(express.json());
 app.use("/api/auth", userRoutes); // Authentication routes (login, signup)
 app.use("/api/user", userRoutes); // User-related routes
 app.use("/api/articles", articlesRoutes); // Article-related routes
-app.use("/api/comments", commentsRoutes); // Comment-related routes
 app.use("/api/jobs", jobsRoutes); // Job-related routes
 app.use("/api/likes", likesRoutes); // Like-related routes
 

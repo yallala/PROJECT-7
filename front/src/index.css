@@ -12,8 +12,8 @@
 
 :root {
     /* Default Color */
-    /* --color-primary: #B30000; */
-    --color-primary: #1D4E89;
+    --color-primary: #B30000;
+    /* --color-primary: #1D4E89; */
     --color-secondary: #FFFFFF;
     --color-accent-light: #EFEFEF;
     --color-accent: #999999;
@@ -21,16 +21,11 @@
     --color-accent-dark: #545454;
     --color-shadow: rgba(0, 0, 0, 0.5);
     --font-color: #000000;
-    /* Valid Color */
     --color-valid-accent: #095700;
     --color-valid-accent-2: #caf2c6;
-    /* Error Color */
-    --color-error-light: #ffeded
-        /*#F5C2C2*/
-    ;
-    /* Options Color */
-    --color-options-comment: #0053B3;
-    --color-options-comment-light: #EDF1FF;
+    --color-error-light: #ffeded;
+    --color-options-options: #0053B3;
+    --color-options-options-light: #EDF1FF;
 }
 
 #root {

@@ -1,28 +1,19 @@
-
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-// Import components
-import App from "../App";
 import Avatar from "../Avatar/Avatar";
-// import Options from "../Options/Options";
 import TinyLoader from "../TinyLoader/TinyLoader";
-// Import style
 import "./Article.css";
 
 const Article = ({ dataArticle, userLogged }) => {
   const [article, setArticle] = useState(dataArticle);
   const [author] = useState(dataArticle.user);
-  // const [valueArticle, setValueArticle] = useState(dataArticle.article);
   const [likes, setLikes] = useState(dataArticle.likes);
-  // const [fileUpload, setFileUpload] = useState(null);
+  const [showFullContent, setShowFullContent] = useState(false); // New state to toggle content visibility
 
   const totalLike = likes.length;
-
   const articleUrl = `http://localhost:3000/api/articles/`;
   const likeUrl = "http://localhost:3000/api/likes";
 
-
-  // Handle like/unlike
   const handleLikesClick = async (event) => {
     const postLike = {
       userId: userLogged.id,
@@ -41,7 +32,6 @@ const Article = ({ dataArticle, userLogged }) => {
       });
   };
 
-  // Fetch updated article data (for likes)
   const fetchUpdatedArticle = () => {
     axios
       .get(articleUrl, {
@@ -58,47 +48,38 @@ const Article = ({ dataArticle, userLogged }) => {
       });
   };
 
+  const toggleContent = () => {
+    setShowFullContent(!showFullContent);
+  };
 
   return (
     <>
-      <>
-        {article ? (
-          <article key={article.id + "-article"}>
-            <div className="article-author">
-              <Avatar dataUser={{ ...author, isProfile: false }} />
-              <div className="author-infos">
-                <h3>
-                  {author.firstname} {author.lastname}
-                </h3>
-              </div>
+      {article ? (
+        <article
+          key={article.id + "-article"}
 
+        >
+          <div className="article-author">
+            <Avatar dataUser={{ ...author, isProfile: false }} />
+            <div className="author-infos">
+              <h3>
+                {author.firstname} {author.lastname}
+              </h3>
             </div>
+          </div>
 
-            {/* Only Image */}
-            {/* <p>{article.article}</p>
-            {article.image !== "none" && (
-              <img src={article.image} alt="postedImage" />
-            )} */}
+          <div className={`like ${likes.some((like) => like.userId === userLogged.id) ? "active" : ""}`}
+            onClick={handleLikesClick}>
 
-            {/* Image and Video */}
-            {/* <p>{article.article}</p>
-            {article.image && (
-              article.image.endsWith(".jpg") ||
-                article.image.endsWith(".jpeg") ||
-                article.image.endsWith(".png") ||
-                article.image.endsWith(".gif") ? (
-                <img src={article.image} alt="postedImage" />
-              ) : (
-                <video controls>
-                  <source src={article.image} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              )
-            )} */}
+            <p>
+              {showFullContent ? article.article : `${article.article.substring(0, 10)}...`}
+            </p>
+            <span onClick={toggleContent} className="read-more">
+              {showFullContent ? "Show Less" : "Read More"}
+            </span>
 
-            {/* Image, Video & Audio */}
-            <p>{article.article}</p>
-            {article.image && (
+            {/* Image, Video, Audio Display Post */}
+            {showFullContent && article.image && (
               article.image.endsWith(".jpg") ||
                 article.image.endsWith(".jpeg") ||
                 article.image.endsWith(".png") ||
@@ -117,22 +98,20 @@ const Article = ({ dataArticle, userLogged }) => {
                   Your browser does not support the video tag.
                 </video>
               ) : article.image.endsWith(".mp3") ||
-              article.image.endsWith(".mp3.undefined") ||
-              article.image.endsWith(".wav") ||
-              article.image.endsWith(".wav.undefined") ||
-              article.image.endsWith(".ogg.undefined") ||
-              article.image.endsWith(".ogg.undefined") ?
-               (
-                <audio controls>
-                  <source src={article.image} type="audio/mpeg" />
-                  Your browser does not support the audio element.
-                </audio>
-              ) : (
-                ""
-              )
+                article.image.endsWith(".mp3.undefined") ||
+                article.image.endsWith(".wav") ||
+                article.image.endsWith(".wav.undefined") ||
+                article.image.endsWith(".ogg.undefined") ||
+                article.image.endsWith(".ogg.undefined") ?
+                (
+                  <audio controls>
+                    <source src={article.image} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                  </audio>
+                ) : (
+                  ""
+                )
             )}
-
-
 
 
             <div className="infos-total">
@@ -142,29 +121,13 @@ const Article = ({ dataArticle, userLogged }) => {
                 </p>
               )}
             </div>
-
-            <ul className="options">
-              <li
-                className={`like ${likes.some((like) => like.userId === userLogged.id)
-                  ? "active"
-                  : ""
-                  }`}
-                onClick={handleLikesClick}
-              >
-                <i className="fa-solid fa-heart"></i> Click to track user
-              </li>
-            </ul>
-
-          </article>
-        ) : (
-          <TinyLoader />
-        )}
-      </>
+          </div>
+        </article>
+      ) : (
+        <TinyLoader />
+      )}
     </>
   );
 };
 
 export default Article;
-
-
-

@@ -48,12 +48,10 @@ export default class App extends React.Component {
       .catch((err) => {
         console.error('[ERROR] Loading articles error!');
         console.log(err);
-        this.setState({ isLoading: false, error: 'Une erreur est survenue! Réessayer plus tard.' });
+        this.setState({ isLoading: false, error: 'Connect backend.' });
       });
   }
 
-  // Vérification du jeton +
-  // Récupération des informations de l'utilisateur.
   checkLog() {
     const { userLogged } = this.state;
     console.log('[INFO] Checking token...');

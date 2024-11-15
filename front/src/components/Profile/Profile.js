@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import axios from "axios";
 // Import components
@@ -5,7 +6,7 @@ import App from "../App";
 import Avatar from "../Avatar/Avatar";
 import TinyLoader from "../TinyLoader/TinyLoader";
 
-const Profile = ({ userLogged, jobsList }) => {
+const Profile = ({ userLogged }) => {
   const [inputValid, setInputValid] = useState([true, true, true, true, true]);
   const [validForm, setValidForm] = useState(true);
   const [valueFirstname, setValueFirstname] = useState(userLogged.firstname);
@@ -13,9 +14,6 @@ const Profile = ({ userLogged, jobsList }) => {
   const [valueEmail, setValueEmail] = useState(userLogged.email);
   const [valuePassword, setValuePassword] = useState(null);
   const [fileAvatar, setFileAvatar] = useState(null);
-  const [curJobId, setCurJobId] = useState(userLogged.job.id);
-  const [curJob, setCurJob] = useState(userLogged.job.jobs);
-  const [curPosJob, setCurPosJob] = useState(null);
 
   const userUrl = "http://localhost:3000/api/user";
 
@@ -26,7 +24,6 @@ const Profile = ({ userLogged, jobsList }) => {
     formData.append("userId", userLogged.id);
     formData.append("firstname", valueFirstname);
     formData.append("lastname", valueLastname);
-    formData.append("jobId", curJobId);
     formData.append("email", valueEmail);
     if (valuePassword) formData.append("password", valuePassword);
     if (fileAvatar) formData.append("avatar", fileAvatar);
@@ -109,22 +106,6 @@ const Profile = ({ userLogged, jobsList }) => {
     setValidForm(!inputs.every((el) => el === true));
   };
 
-  // Handle job change
-  const handleJobClick = (event) => {
-    let posJob = curPosJob + 1 || 1;
-    if (posJob >= jobsList.length) posJob = 0;
-
-    jobsList.forEach((job, index) => {
-      if (posJob === index) {
-        event.target.className = job.id === userLogged.job.id ? "" : "valid";
-        setCurPosJob(posJob);
-        setCurJobId(job.id);
-        setCurJob(job.jobs);
-        setValidForm(job.id === userLogged.job.id);
-      }
-    });
-  };
-
   // Handle avatar deletion
   const deleteAvatar = async () => {
     if (window.confirm("Are you sure you want to delete your avatar?")) {
@@ -150,8 +131,8 @@ const Profile = ({ userLogged, jobsList }) => {
             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
           },
         });
-        sessionStorage.clear();
         App.ReloadApp();
+        sessionStorage.clear();
       } catch (error) {
         console.error("Error deleting account!", error);
       }
@@ -193,16 +174,6 @@ const Profile = ({ userLogged, jobsList }) => {
             required
           />
         </div>
-        <label htmlFor="Jobs">Job</label>
-        <input
-          id="Jobs"
-          name="jobs"
-          type="text"
-          readOnly
-          label="Job"
-          value={curJob}
-          onClick={handleJobClick}
-        />
         <label htmlFor="Email">Email</label>
         <input
           id="Email"

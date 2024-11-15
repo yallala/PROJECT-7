@@ -39,10 +39,10 @@ module.exports = (sequelize, Sequelize) => {
       defaultValue: false, // Default value is false (account is not deleted)
     },
     // Boolean field to track if the user is an admin
-    isAdmin: {
-      type: Sequelize.BOOLEAN, // Boolean type (true or false)
-      defaultValue: false, // Default value is false (not an admin)
-    },
+    // isAdmin: {
+    //   type: Sequelize.BOOLEAN, // Boolean type (true or false)
+    //   defaultValue: false, // Default value is false (not an admin)
+    // },
   });
 
   return Users; // Return the defined model

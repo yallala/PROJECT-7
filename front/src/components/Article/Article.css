@@ -26,12 +26,12 @@ article .file-upload {
   font-size: 1.1em;
   border: 2px solid;
   background-color: var(--color-shadow);
-  border: 2px solid var(--color-options-comment);
+  /* border: 2px solid var(--color-options-options); */
   border-radius: 2em;
 }
 
 article .file-upload:hover {
-  color: var(--color-options-comment);
+  color: var(--color-options-options);
   background-color: var(--color-secondary);
 }
 
@@ -81,17 +81,7 @@ article .infos-total {
   justify-content: center;
 }
 
-article p.comment {
-  display: block;
-  min-width: 50%;
-  width: 100%;
-  margin: 4px;
-  padding: 6px;
-  font-size: 0.8em;
-  text-align: right;
-  color: var(--color-options-comment);
-  border: 0;
-}
+
 
 article p.like {
   display: block;
@@ -159,11 +149,11 @@ article p.like {
   color: var(--color-secondary);
   border: 1px solid;
   border-radius: 0.2em;
-  background-color: var(--color-options-comment);
+  background-color: var(--color-options-options);
 }
 
 .article-no-options button:hover {
-  color: var(--color-options-comment);
+  color: var(--color-options-options);
   background-color: var(--color-secondary);
 }
 
@@ -190,13 +180,13 @@ form.addArticle label.file-upload {
   width: 40px;
   height: 40px;
   font-size: 1.1em;
-  background-color: var(--color-options-comment);
+  background-color: var(--color-options-options);
   border-radius: 0;
   border: 1px solid;
 }
 
 form.addArticle label.file-upload:hover {
-  color: var(--color-options-comment);
+  color: var(--color-options-options);
   background-color: var(--color-secondary);
 }
 
@@ -237,5 +227,12 @@ form.addArticle button:disabled {
 
 .submit-post-btn:hover {
   background-color: black !important;
+  cursor: pointer;
+}
+
+.read-more {
+  color: red;
+  display: flex;
+  justify-content: end;
   cursor: pointer;
 }

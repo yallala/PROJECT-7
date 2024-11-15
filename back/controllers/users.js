@@ -91,14 +91,14 @@ exports.userSign = (req, res) => {
     .hash(req.body.password, 10)
     .then((hash) => {
       console.log("New registration.");
-      let objectJobs = { jobs: "Membre" }; // Default job for new users
+      let objectJobs = { jobs: "" }; // Default job for new users
       let objectUser = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
         password: hash, // Hashed password
         jobId: 1, // Default job ID
-        isAdmin: 0, // Default: not an admin
+        // isAdmin: 0, // Default: not an admin
       };
 
       // Check if there are no users in the system (first user becomes admin)
@@ -112,7 +112,7 @@ exports.userSign = (req, res) => {
           // Grant admin rights to the first user
           objectUser = {
             ...objectUser,
-            isAdmin: 1,
+            // isAdmin: 1,
           };
         }
 
@@ -149,9 +149,8 @@ exports.userEdit = (req, res) => {
         });
         objectUser = {
           ...objectUser,
-          avatar: `${req.protocol}://${req.get("host")}/avatars/${
-            req.file.filename
-          }`, // Set new avatar URL
+          avatar: `${req.protocol}://${req.get("host")}/avatars/${req.file.filename
+            }`, // Set new avatar URL
         };
       }
 
@@ -174,8 +173,8 @@ exports.userEdit = (req, res) => {
         }
         objectUser = {
           ...objectUser,
-          firstname: "Compte",
-          lastname: "Inactif", // Set to "Inactive Account"
+          firstname: "Complete",
+          lastname: "Inactive", // Set to "Inactive Account"
           avatar: "none",
           isDelete: `${forDelete}`, // Mark the account as deleted
         };
@@ -187,7 +186,7 @@ exports.userEdit = (req, res) => {
         .catch((error) => res.status(400).json({ error: error }));
     })
     .catch(() => {
-      console.error("Impossible de trouver cet utilisateur!");
+      console.error("Unable to find this user!");
     });
 };
 
@@ -235,6 +234,6 @@ exports.userDel = (req, res) => {
       }
     })
     .catch(() => {
-      console.error("Impossible de trouver cet utilisateur!");
+      console.error("Unable to find this user!");
     });
 };

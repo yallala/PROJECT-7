@@ -3,16 +3,14 @@ const db = require("../models"); // Importing the database models
 const Users = db.users; // Importing the Users model
 const Jobs = db.jobs; // Importing the Jobs model
 const Articles = db.articles; // Importing the Articles model
-const Comments = db.comments; // Importing the Comments model
 const Likes = db.likes; // Importing the Likes model
 
 // Fetching all articles.
 exports.articlesGet = (req, res) => {
   Articles.findAll({
-    // Including associated models: Users (with Jobs), Comments, and Likes
     include: [
+      // { model: Users },
       { model: Users, include: { model: Jobs } },
-      { model: Comments },
       { model: Likes },
     ],
     order: [["id", "DESC"]], // Sorting by article ID in descending order (latest articles first)
@@ -42,9 +40,8 @@ exports.articleAdd = (req, res) => {
 
   // If a file is uploaded, construct the image URL
   if (req.file && req.file.filename)
-    myImage = `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`;
+    myImage = `${req.protocol}://${req.get("host")}/images/${req.file.filename
+      }`;
 
   // Find the user by ID who authored the article
   Users.findOne({ where: { id: authorId } })
@@ -78,13 +75,12 @@ exports.articleEdit = (req, res) => {
     .then((article) => {
       // If the user uploaded a new image
       if (req.file && req.file.filename) {
-        myImage = `${req.protocol}://${req.get("host")}/images/${
-          req.file.filename
-        }`;
+        myImage = `${req.protocol}://${req.get("host")}/images/${req.file.filename
+          }`;
         // If the article already had an image, delete the old one
         if (myImage != "none" && article.image != "none") {
           const filename = article.image.split("/images/")[1];
-          fs.unlink(`images/${filename}`, () => {});
+          fs.unlink(`images/${filename}`, () => { });
         }
       } else {
         myImage = article.image; // Retain the old image if no new one is uploaded
@@ -127,7 +123,7 @@ exports.articleDel = (req, res) => {
         // If the article has an image, delete it
         if (article.image != "none") {
           const filename = article.image.split("/images/")[1];
-          fs.unlink(`images/${filename}`, () => {});
+          fs.unlink(`images/${filename}`, () => { });
         }
         // Update the article to remove the image reference
         Articles.update({ image: "none" }, { where: { id: articleId } })
@@ -143,7 +139,7 @@ exports.articleDel = (req, res) => {
         // If the article has an image, delete the image file
         if (article.image != "none") {
           const filename = article.image.split("/images/")[1];
-          fs.unlink(`images/${filename}`, () => {});
+          fs.unlink(`images/${filename}`, () => { });
         }
         // Delete the article from the database
         Articles.destroy({ where: { id: articleId } })

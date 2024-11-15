@@ -1,7 +1,7 @@
 /******************************
  *  OPTIONS STYLE COMPONENT   *
  ******************************/
- .options {
+.options {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,39 +11,43 @@
     background-color: var(--color-secondary);
     border-top: 1px solid var(--color-accent);
 }
-.options > li {
+
+.options>li {
     width: 50%;
     margin: 2px;
     padding: 10px;
     text-align: center;
     cursor: pointer;
 }
-.options > li.comments { color: var(--color-options-comment); }
-.options > li.like { color: var(--color-primary); }
 
-.options > li:hover,
-.options > li.like:hover,
-.options > li.comments:hover,
-.options > li.active.like:hover,
-.options > li.active.comments:hover {
+.options>li.like {
+    color: var(--color-primary);
+}
+
+.options>li:hover,
+.options>li.like:hover,
+.options>li.active.like:hover {
     color: var(--font-color);
     background-color: var(--color-accent-light);
 }
 
-.options > li.like:hover,
-.options > li.comments:hover { color: var(--color-secondary); }
+.options>li.like:hover {
+    color: var(--color-secondary);
+}
 
-.options > li.like:hover { background-color: var(--color-primary); }
-.options > li.comments:hover { background-color: var(--color-options-comment); }
+.options>li.like:hover {
+    background-color: var(--color-primary);
+}
 
-.options > li.active.like,
-.options > li.active.comments { color: var(--color-secondary); }
+.options>li.active.like {
+    color: var(--color-secondary);
+}
 
-.options > li.active.comments { background-color: var(--color-options-comment); }
-.options > li.active.like  {background-color: var(--color-primary); }
+.options>li.active.like {
+    background-color: var(--color-primary);
+}
 
-.options > li.active.like:hover,
-.options > li.active.comments:hover {
+.options>li.active.like:hover {
     text-decoration: line-through;
 }
 
@@ -55,35 +59,48 @@
     width: 150px;
     margin: 0;
     padding: 0;
-    padding-inline-start: 0; padding-inline-end: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
     font-size: 0.5em;
     background-color: var(--color-accent-light);
     border-radius: 0.5em;
     border: 1px solid var(--color-accent-2);
     box-shadow: 1px 1px 0 var(--color-accent);
 }
-.options.article > li.delete,
-.options.article > li.edit {
+
+.options.article>li.delete,
+.options.article>li.edit {
     width: 100%;
     margin: 0;
     text-align: left;
 }
-.options.article > li.edit { color: var(--color-options-comment);}
-.options.article > li.delete { color: var(--color-primary);}
 
-.options.article > li.middle,
-.options.article > li.middle:hover { border-radius: 0 !important;}
+.options.article>li.edit {
+    color: var(--color-options-options);
+}
 
-.options.article > li.edit:hover,
-.options.article > li.delete:hover {
+.options.article>li.delete {
+    color: var(--color-primary);
+}
+
+.options.article>li.middle,
+.options.article>li.middle:hover {
+    border-radius: 0 !important;
+}
+
+.options.article>li.edit:hover,
+.options.article>li.delete:hover {
     color: var(--color-secondary);
 }
-.options.article > li.edit:hover {
+
+.options.article>li.edit:hover {
     border-radius: 0.4em 0.4em 0 0;
-    background-color: var(--color-options-comment);
+    background-color: var(--color-options-options);
 }
-.options.article > li.delete:hover {
+
+.options.article>li.delete:hover {
     border-radius: 0 0 0.4em 0.4em;
     background-color: var(--color-primary);
 }
+
 /******************************/

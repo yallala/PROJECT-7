@@ -14,6 +14,29 @@ const Register = ({ navigateTo }) => {
   const [error, setError] = useState("");
   const signUrl = "http://localhost:3000/api/auth/sign";
 
+  // const postRegister = async (event) => {
+  //   event.preventDefault();
+  //   setValidForm(true);
+  //   setInAction(true);
+
+  //   const dataPost = {
+  //     firstname: valueFirst,
+  //     lastname: valueLast,
+  //     email: valueEmail,
+  //     password: valuePassword,
+  //   };
+
+  //   try {
+  //     const res = await axios.post(signUrl, dataPost);
+  //     setToken(res.data.token);
+  //     App.ReloadApp();
+  //   } catch (err) {
+  //     setValidForm(false);
+  //     setInAction(false);
+  //     setError("Email address already exists!");
+  //   }
+  // };
+
   const postRegister = async (event) => {
     event.preventDefault();
     setValidForm(true);
@@ -33,8 +56,14 @@ const Register = ({ navigateTo }) => {
     } catch (err) {
       setValidForm(false);
       setInAction(false);
-      setError("Email address already exists!");
+      if (err.response && err.response.status === 409) {
+        // Assuming the backend responds with 409 for conflict (duplicate email)
+        setError("This email address is already registered!");
+      } else {
+        setError("An error occurred. Please try again.");
+      }
     }
+
   };
 
   const checkForm = (target) => {

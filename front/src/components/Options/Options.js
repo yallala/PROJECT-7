@@ -12,7 +12,6 @@ export default class Options extends React.Component {
       // DATAS
       userLogged: props.userLogged,
       optionsFor: props.for,
-      commentId: props.commentId,
       // OPTIONS
       isLoading: false, // Active for all get request
     };
@@ -27,75 +26,27 @@ export default class Options extends React.Component {
   }
 
   setOptions() {
-    const { optionsFor, commentId, userLogged } = this.state;
-    switch (optionsFor) {
-      case "Avatar":
-        return (
-          <>
-            <ul className="options article">
-              <li
-                className="edit"
-                id={"Profile"}
-                onClick={this.props.navigateTo}
-              >
-                <i className="fa-solid fa-user"></i> Profile
-              </li>
-              {userLogged.isAdmin ? (
-                <>
-                  <li
-                    className="edit middle"
-                    id={"Admin"}
-                    onClick={this.props.navigateTo}
-                  >
-                    <i className="fa-solid fa-screwdriver-wrench"></i>{" "}
-                    Administration
-                  </li>
-                </>
-              ) : null}
-              <li className="delete" onClick={this.props.logout}>
-                <i className="fa-solid fa-right-from-bracket"></i> Logout
-              </li>
-            </ul>
-          </>
-        );
-
-      // Comment Edit and Delete
-      default:
-        return (
-          <>
-            <ul className="options article">
-              <li className="edit" onClick={this.props.onEditClick}>
-                <i className="fa-solid fa-pencil"></i> Edit
-              </li>
-              <li
-                className="delete"
-                value={commentId}
-                onClick={this.props.onDeleteClick}
-              >
-                <i className="fa-solid fa-trash"></i> Delete
-              </li>
-
-              {/* {commentId ? (
-                <>
-                  <li
-                    className="delete"
-                    value={commentId}
-                    onClick={this.props.onDeleteClick}
-                  >
-                    <i className="fa-solid fa-trash"></i> Delete
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li className="delete" onClick={this.props.onDeleteClick}>
-                    <i className="fa-solid fa-trash"></i> Delete
-                  </li>
-                </>
-              )} */}
-            </ul>
-          </>
-        );
+    const { optionsFor } = this.state;
+    // const { optionsFor, userLogged } = this.state;
+    if (optionsFor === "Avatar") {
+      return (
+        <>
+          <ul className="options article">
+            <li
+              className="edit"
+              id={"Profile"}
+              onClick={this.props.navigateTo}
+            >
+              <i className="fa-solid fa-user"></i> Profile
+            </li>
+            <li className="delete" onClick={this.logout}>
+              <i className="fa-solid fa-right-from-bracket"></i> Logout
+            </li>
+          </ul>
+        </>
+      );
     }
+    return null; // Return null if no options should be displayed
   }
 
   render() {

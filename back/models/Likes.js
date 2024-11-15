@@ -21,3 +21,31 @@ module.exports = (sequelize, Sequelize) => {
 
   return Likes; // Return the defined model
 };
+
+
+// module.exports = (sequelize, Sequelize) => {
+//   const Likes = sequelize.define("likes", {
+//     id: {
+//       type: Sequelize.INTEGER,
+//       autoIncrement: true,
+//       primaryKey: true,
+//     },
+//     userId: {
+//       type: Sequelize.INTEGER,
+//       allowNull: false,
+//     },
+//     articleId: {
+//       type: Sequelize.INTEGER,
+//       allowNull: false,
+//     },
+//     createdAt: {
+//       type: Sequelize.DATE,
+//       allowNull: false,
+//       defaultValue: Sequelize.NOW,timestamp
+//     },
+//   }, {
+//     timestamps: false,
+//   });
+
+//   return Likes;
+// };
