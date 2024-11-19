@@ -5,6 +5,7 @@ import TinyLoader from "../TinyLoader/TinyLoader";
 import App from "../App";
 
 const Login = ({ navigateTo }) => {
+  // useState is to update our state
   const [valueEmail, setValueEmail] = useState("");
   const [valuePassword, setValuePassword] = useState("");
   const [inputValid, setInputValid] = useState([false, false]);

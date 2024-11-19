@@ -14,29 +14,6 @@ const Register = ({ navigateTo }) => {
   const [error, setError] = useState("");
   const signUrl = "http://localhost:3000/api/auth/sign";
 
-  // const postRegister = async (event) => {
-  //   event.preventDefault();
-  //   setValidForm(true);
-  //   setInAction(true);
-
-  //   const dataPost = {
-  //     firstname: valueFirst,
-  //     lastname: valueLast,
-  //     email: valueEmail,
-  //     password: valuePassword,
-  //   };
-
-  //   try {
-  //     const res = await axios.post(signUrl, dataPost);
-  //     setToken(res.data.token);
-  //     App.ReloadApp();
-  //   } catch (err) {
-  //     setValidForm(false);
-  //     setInAction(false);
-  //     setError("Email address already exists!");
-  //   }
-  // };
-
   const postRegister = async (event) => {
     event.preventDefault();
     setValidForm(true);
@@ -52,7 +29,7 @@ const Register = ({ navigateTo }) => {
     try {
       const res = await axios.post(signUrl, dataPost);
       setToken(res.data.token);
-      App.ReloadApp();
+     App.ReloadApp();
     } catch (err) {
       setValidForm(false);
       setInAction(false);
