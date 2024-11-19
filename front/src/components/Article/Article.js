@@ -117,7 +117,7 @@ const Article = ({ dataArticle, userLogged }) => {
             <div className="infos-total">
               {likes && totalLike >= 1 && (
                 <p className="like">
-                  <i className="fa-solid fa-heart"></i> {totalLike} user tracked
+                  <i className="fa-solid fa-heart"></i> {totalLike} Read
                 </p>
               )}
             </div>
