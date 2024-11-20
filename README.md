@@ -1,4 +1,4 @@
-<!-- 
+
 
 # Groupomania
 
@@ -163,4 +163,4 @@ back/
 ---
 
 ## **GitHub Repository**
-[Project Repository] -->
+[Project Repository]
