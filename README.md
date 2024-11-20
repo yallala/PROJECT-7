@@ -163,4 +163,8 @@ back/
 ---
 
 ## **GitHub Repository**
-[Project Repository]
+[https://github.com/yallala/PROJECT-7]
+
+
+## **DB Queries:
+  Please use schema.sql file to access the DB queries I have used in this project

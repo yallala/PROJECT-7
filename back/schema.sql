@@ -30,4 +30,47 @@ ALTER TABLE IF EXISTS public.users
     OWNER to postgres;
 
 
--- TODO add queries for remaining table
+
+    -- Table: public.likes
+
+-- DROP TABLE IF EXISTS public.likes;
+
+CREATE TABLE IF NOT EXISTS public.likes
+(
+    id integer NOT NULL DEFAULT nextval('likes_id_seq'::regclass),
+    "userId" integer NOT NULL,
+    "articleId" integer NOT NULL,
+    CONSTRAINT likes_pkey PRIMARY KEY (id),
+    CONSTRAINT "likes_articleId_fkey" FOREIGN KEY ("articleId")
+        REFERENCES public.articles (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.likes
+    OWNER to postgres;
+
+    -- Table: public.articles
+
+-- DROP TABLE IF EXISTS public.articles;
+
+CREATE TABLE IF NOT EXISTS public.articles
+(
+    id integer NOT NULL DEFAULT nextval('articles_id_seq'::regclass),
+    article character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    image character varying(255) COLLATE pg_catalog."default" DEFAULT 'none'::character varying,
+    "postDate" timestamp with time zone NOT NULL,
+    "authorId" integer NOT NULL,
+    CONSTRAINT articles_pkey PRIMARY KEY (id),
+    CONSTRAINT "articles_authorId_fkey" FOREIGN KEY ("authorId")
+        REFERENCES public.users (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.articles
+    OWNER to postgres;
