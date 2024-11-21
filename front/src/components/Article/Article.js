@@ -282,7 +282,7 @@ const Article = ({ dataArticle, userLogged }) => {
               Your browser does not support the audio element.
             </audio>
     ) : (
-      <p>{article.article}</p>
+      <p>""</p>
     )}
   </>
 )}
